@@ -17,7 +17,10 @@ In your WSL2 terminal, install Java:
 ```bash
 sudo apt update
 sudo apt install default-jdk
+```
 
-## Run the kafka-server-start.sh script to start the Kafka server:
+### 2. Run the kafka-server-start.sh script to start the Kafka server:
+```bash
 ./kafka_2.13-3.8.1/bin/kafka-server-start.sh config/kraft/server.properties
+```
 
