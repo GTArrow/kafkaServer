@@ -15,8 +15,8 @@ This guide helps you set up and run Apache Kafka on Windows using WSL2. It follo
 In your WSL2 terminal, install Java:
 
 ```bash
-sudo apt update
-sudo apt install default-jdk
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt install openjdk-17-jdk -y
 ```
 
 ### 2. Run the kafka-server-start.sh script to start the Kafka server:
