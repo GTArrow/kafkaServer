@@ -19,8 +19,10 @@ sudo apt-get update && sudo apt-get upgrade -y
 sudo apt install openjdk-17-jdk -y
 ```
 
-### 2. Run the kafka-server-start.sh script to start the Kafka server:
+### 2. Got to Kafka folder then run the kafka-server-start.sh script to start the Kafka server:
 ```bash
-./kafka_2.13-3.8.1/bin/kafka-server-start.sh config/kraft/server.properties
+KAFKA_CLUSTER_ID="$(bin/kafka-storage.sh random-uuid)"
+bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c config/kraft/server.properties
+bin/kafka-server-start.sh config/kraft/server.properties
 ```
 
