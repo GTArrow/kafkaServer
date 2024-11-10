@@ -1,0 +1,69 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Forest Map with Original and Generated Coordinates</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <style>
+            #map { height: 600px; width: 100%; }
+        </style>
+    </head>
+    <body>
+        <h3>Forest Boundary with Original (Blue) and Generated (Red) Points</h3>
+        <div id="map"></div>
+
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script>
+            // Initialize the map centered around a midpoint of the forest boundary
+            const map = L.map('map').setView([51.8272128, -121.062656], 14);
+
+            // Add a tile layer to the map (OpenStreetMap)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Original coordinates (boundary of the forest)
+            const originalCoordinates = [[-121.062656, 51.8272128], [-121.062892, 51.8271067], [-121.062892, 51.8267884], [-121.0628062, 51.8262977], [-121.0626774, 51.8258999], [-121.0627203, 51.8254888], [-121.0626989, 51.8251174], [-121.0627203, 51.8247063], [-121.062892, 51.8244941], [-121.0625057, 51.8242554], [-121.0622053, 51.8239636], [-121.0622697, 51.823579], [-121.0621839, 51.8233402], [-121.0619264, 51.8231413], [-121.0617762, 51.8228097], [-121.0617333, 51.8224516], [-121.0618835, 51.8220935], [-121.061862, 51.8217885], [-121.0617118, 51.8215763], [-121.0614114, 51.8213243], [-121.0614114, 51.8211121], [-121.0612612, 51.8209662], [-121.0608964, 51.8209662], [-121.0605316, 51.8208998], [-121.0604029, 51.8207274], [-121.0601454, 51.8207141], [-121.0598235, 51.8208468], [-121.0594588, 51.8208203], [-121.0590081, 51.8207539], [-121.0584932, 51.8205815], [-121.0584932, 51.8203428], [-121.0586648, 51.820104], [-121.0584502, 51.8200775], [-121.0582142, 51.8202101], [-121.0579567, 51.8201703], [-121.0577636, 51.8200377], [-121.0575919, 51.8199183], [-121.0572915, 51.8198785], [-121.0570126, 51.8200642], [-121.0567122, 51.8201969], [-121.0564976, 51.8202234], [-121.0563045, 51.8204224], [-121.0560255, 51.8204887], [-121.0558968, 51.8207141], [-121.0557466, 51.8209662], [-121.0556822, 51.8212049], [-121.0563689, 51.821563], [-121.0565834, 51.8214038], [-121.0569268, 51.8212712], [-121.0569482, 51.8214967], [-121.0566907, 51.8217354], [-121.0568409, 51.8219476], [-121.0568409, 51.8222129], [-121.0570555, 51.8225047], [-121.0574632, 51.8227169], [-121.0578494, 51.8230617], [-121.0583, 51.8234198], [-121.0586219, 51.8234331], [-121.0590511, 51.8239636], [-121.0594158, 51.8244941], [-121.0594373, 51.8249715], [-121.0596733, 51.8255285], [-121.0596733, 51.8259264], [-121.0600381, 51.8261651], [-121.0607891, 51.8262182], [-121.0611325, 51.8262712], [-121.0613685, 51.8264967], [-121.0617118, 51.8268945], [-121.0620766, 51.827173], [-121.0624843, 51.8272526], [-121.062656, 51.8272128]];
+
+            // Add the original boundary as a polygon in blue
+            L.polygon(originalCoordinates.map(coord => [coord[1], coord[0]]), {
+                color: 'blue',
+                weight: 2,
+                opacity: 0.7
+            }).addTo(map);
+
+            // Add markers for the original coordinates in blue
+            originalCoordinates.forEach((coord, index) => {
+                L.marker([coord[1], coord[0]], {
+                    icon: L.divIcon({
+                        className: 'original-marker',
+                        iconSize: [8, 8],
+                        html: '<div style="background-color:blue;border-radius:50%;width:8px;height:8px;"></div>'
+                    })
+                })
+                .bindPopup(`<b>Original Point ${index + 1}</b><br>Lat: ${coord[1]}<br>Lng: ${coord[0]}`)
+                .addTo(map);
+            });
+
+            // New coordinates (generated points within the boundary)
+            const newCoordinates = [[-121.06151464840028, 51.82439280509848], [-121.05816217962887, 51.8204425818164], [-121.06006591225, 51.8207675889991], [-121.06210384967547, 51.82587395286425], [-121.05948663907039, 51.82314481319831], [-121.05906922017914, 51.821094830985786], [-121.06046409112776, 51.82214560124949], [-121.06015090746602, 51.823959430957885], [-121.05980563281547, 51.822326172221764], [-121.06095938041351, 51.82549774431621]];
+
+            // Add markers for the new generated coordinates with red points
+            newCoordinates.forEach((coord, index) => {
+                L.marker([coord[1], coord[0]], {
+                    icon: L.divIcon({
+                        className: 'new-marker',
+                        iconSize: [8, 8],
+                        html: '<div style="background-color:red;border-radius:50%;width:8px;height:8px;"></div>'
+                    })
+                })
+                .bindPopup(`<b>Generated Point ${index + 1}</b><br>Lat: ${coord[1]}<br>Lng: ${coord[0]}`)
+                .addTo(map);
+            });
+        </script>
+    </body>
+    </html>
+    
