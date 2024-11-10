@@ -25,4 +25,13 @@ KAFKA_CLUSTER_ID="$(bin/kafka-storage.sh random-uuid)"
 bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c config/kraft/server.properties
 bin/kafka-server-start.sh config/kraft/server.properties
 ```
+## Environment setup issue
 
+If you are seeing kafka module issue for example
+```bash
+ModuleNotFoundError: No module named 'kafka.vendor.six.moves'
+```
+Try to install kafka python from git directly
+```bash
+pip install --break-system-packages git+https://github.com/dpkp/kafka-python.git
+```
