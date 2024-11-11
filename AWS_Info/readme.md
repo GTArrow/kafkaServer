@@ -4,10 +4,12 @@ Have your personal IAM account
 
 ## Test your account by running following testing examples
 
+🚨 **Important Note:** Everytime you run the fetch function, it will send data Firehose, which may incur a cost, so please don't run the fetch function too many times
+
 ### Test the Lamda function that send forest data to Kinesis
 ![alt text](image.png)
 
-Go to function fetch_forest_weather_data_to_firehose, read the basic code logic, go to the Test section, run the following testing event. Click on Test, you will send a record to Kinesis
+Go to function fetch_forest_weather_data_to_firehose, **read the logic and get familar with how it send data to firehose**, go to the Test section, run the following testing event. Click on Test, you will send a record to Kinesis
 
 ![alt text](image-1.png)
 
@@ -19,7 +21,7 @@ And you can find timestamp in log:
 
 ![alt text](image-4.png)
 
-### Test the Lamda function that process response from  Kinesis
+### Test the Lamda function that process response from Firehose
 
 Go to Lambda-> Functions -> process_forest_weather_data, run the following test event
 
