@@ -43,6 +43,7 @@ Go to Destination error log, find the latest one (or the one that matches your s
 ![alt text](image-7.png)
 
 For more detail about the error, go to CloudWatch, open the log group (or check all groups). In our case, it's very likely the error happens in processor.
+
 ![alt text](image-8.png)
 
 Find the log with Lst Event Time that is close to your event time, please note you are seeing UTC time here
@@ -52,3 +53,17 @@ Find the log with Lst Event Time that is close to your event time, please note y
 And error usually start with [ERROR]
 
 ![alt text](image-10.png)
+
+## Kenisis key configuration
+
+The lamda function that process the response:
+
+![image](https://github.com/user-attachments/assets/e7c7108c-e07d-47d9-89d4-602de9d6c31c)
+
+S3 bucket name, the error file name prefix and data file prefix
+
+![image](https://github.com/user-attachments/assets/c92f89ee-5e2d-4c2d-8d0d-8e639cf203a1)
+
+
+
+
